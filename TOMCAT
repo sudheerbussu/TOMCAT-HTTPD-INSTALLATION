@@ -1,0 +1,73 @@
+ssh ec2-user@your-instance-ip
+
+
+sudo yum update -y  # For Amazon Linux or CentOS
+or
+sudo apt update     # For Ubuntu or Debian
+
+-----java is must for tomcat----
+
+# For Amazon Linux or CentOS
+sudo yum install java-1.8.0-openjdk -y
+
+# For Ubuntu or Debian
+sudo apt install openjdk-8-jdk -y
+
+
+Download and Install Apache Tomcat:
+-----------------------------------------
+Create a directory to store Tomcat and navigate to it. You can check the Tomcat download page for the latest version.
+
+
+mkdir ~/tomcat
+cd ~/tomcat
+
+Download the Tomcat archive (adjust the version number as needed):
+--------------------------------------------
+wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.55/bin/apache-tomcat-9.0.55.tar.gz
+
+
+Extract the Tomcat archive:
+--------------------------------------
+tar -xvf apache-tomcat-9.0.55.tar.gz
+
+
+
+
+Start Tomcat:
+-----------------------------
+Navigate to the Tomcat bin directory:
+
+cd ~/tomcat/apache-tomcat-9.0.55/bin
+
+Start Tomcat:
+-----------
+./startup.sh
+
+
+
+For example, you can add a user with manager-gui and admin-gui roles:
+---------------------------------------------------------------
+xml
+<tomcat-users>
+    <user username="admin" password="your-password" roles="manager-gui,admin-gui"/>
+</tomcat-users>
+
+
+Make sure to replace your-password with a strong password.
+
+Then, restart Tomcat:
+------------------------
+cd ~/tomcat/apache-tomcat-9.0.55/bin
+./shutdown.sh
+./startup.sh
+
+access
+---------
+http://your-instance-ip:8080
+
+
+Deploy Your Web Application (Optional):
+-----------------------------------------------
+You can deploy your web application by placing it in the webapps directory within the Tomcat installation directory (~/tomcat/apache-tomcat-9.0.55/webapps). 
+Tomcat will automatically deploy the application.
